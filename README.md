@@ -6,4 +6,4 @@ git clone https://github.com/danited1234/online_dictionary.git
 pip install -r requirements.txt
 
 ## Usage
-![Gif To be Seen] (https://gph.is/g/Z5Bn6v3)
+![Gif To be Seen](https://gph.is/g/Z5Bn6v3)
