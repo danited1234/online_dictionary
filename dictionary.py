@@ -5,8 +5,11 @@ import os
 import sys
 def dictionary(word):
 	website=requests.get("https://www.vocabulary.com/dictionary/"+word)
+	website_two=requests.get("https://www.thesaurus.com/browse/"+word)
+	source_code_two=website_two.content
 	source_code=website.content
 	soup=BeautifulSoup(source_code,'lxml')
+	soup_two=BeautifulSoup(source_code_two,"lxml")
 	default_color='\033[m'
 	word_color='\033[1;32;40m'
 	text_color='\033[1;31;40m'
@@ -17,13 +20,19 @@ def dictionary(word):
 		res=" ".join(string.split())
 		if "adj" in res:
 			os.system("cls" if os.name == "nt" else "clear")
-			print(f"{word_color}{word}{default_color}is an adjective and it means\n{text_color}{res.replace('adj','')}")
+			print(f"{word_color}{word}{default_color} is an adjective and it means\n{text_color}{res.replace('adj','')}\nSynonyms Include:")
+			for a_tags in soup_two.find_all(class_="css-7854fb etbu2a31"):
+				print(f"{word_color}{a_tags.text}{default_color}")
 		elif "n" in res:
 			os.system("cls" if os.name == "nt" else "clear")
-			print(f"{word_color}{word}{default_color} is a noun and it means\n{text_color}{res[1:]}")
+			print(f"{word_color}{word}{default_color} is a noun and it means\n{text_color}{res[1:]}\nSynonyms Include")
+			for a_tags in soup_two.find_all(class_="css-7854fb etbu2a31"):
+				print(f"{word_color}{a_tags.text}{default_color}")
 		elif "v" in res:
 			os.system("cls" if os.name == "nt" else "clear")
-			print(f"{word_color}{word}{default_color} is a verb and it means\n{text+color}{res[1:]}")
+			print(f"{word_color}{word}{default_color} is a verb and it means\n{text+color}{res[1:]}\nSynonyms Include")
+			for a_tags in soup_two.find_all(class_="css-7854fb etbu2a31"):
+				print(f"{word_color}{a_tags.text}{default_color}")
 		else:
 			os.system("cls" if os.name == "nt" else "clear")
 			print(res)
