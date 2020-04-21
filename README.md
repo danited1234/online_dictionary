@@ -6,5 +6,4 @@ git clone https://github.com/danited1234/online_dictionary.git
 pip install -r requirements.txt
 
 ## Usage
-python dictionary.py word
-
+![Gif To be Seen] (https://media.giphy.com/media/QyWELnC9cRm0inm3RH/giphy.gif)\s\s
